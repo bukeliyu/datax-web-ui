@@ -30,6 +30,10 @@
         <el-input v-model="readerForm.querySql" :autosize="{ minRows: 3, maxRows: 20}" type="textarea" placeholder="sql查询，一般用于多表关联查询时才用" style="width: 42%" />
         <el-button type="primary" @click.prevent="getColumns('reader')">解析字段</el-button>
       </el-form-item>
+      <el-form-item label="env_key：">
+        <el-input v-model="readerForm.envKey" placeholder="为空则不填加env_key字段" style="width: 20%" />
+        <el-button type="primary" @click.prevent="createHiveTable('create')">创建hive表</el-button>
+      </el-form-item>
       <el-form-item label="切分字段：">
         <el-input v-model="readerForm.splitPk" placeholder="切分主键" style="width: 13%" />
       </el-form-item>
@@ -84,6 +88,7 @@ export default {
         querySql: '',
         checkAll: false,
         isIndeterminate: true,
+        envKey: '',
         splitPk: '',
         tableSchema: ''
       },
@@ -197,6 +202,17 @@ export default {
         } else {
           this.getTableColumns()
         }
+      }
+    },
+    // 创建hive表
+    createHiveTable(type) {
+      if (type === 'create') {
+        const obj = {
+          datasourceId: this.readerForm.datasourceId,
+          tableName: this.readerForm.tableName,
+          envKey: this.readerForm.envKey
+        }
+        dsQueryApi.createHiveTable(obj)
       }
     },
     // 表切换

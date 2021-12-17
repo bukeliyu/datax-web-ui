@@ -38,6 +38,15 @@ export function getColumnsByQuerySql(params) {
   })
 }
 
+// 点击按钮创建hive表
+export function createHiveTable(params) {
+  return request({
+    url: '/api/metadata/createHiveTable',
+    method: 'post',
+    params
+  })
+}
+
 // 根据datasourceID、tablename创建表【目标端】
 export function createTable(params) {
   return request({
