@@ -41,26 +41,26 @@
         </el-col>-->
       </el-row>
       <el-form-item label="path" prop="path">
-        <el-input v-model="writerForm.path" :autosize="{ minRows: 2, maxRows: 20}" type="textarea" placeholder="为与hive表关联，请填写hive表在hdfs上的存储路径" style="width: 42%" />
+        <el-input v-model="writerForm.path" :autosize="{ minRows: 2, maxRows: 20}" type="textarea" placeholder="hive表存储路径,默认:/usr/hive/warehouse/ods.db/table_name/dt=datax" style="width: 42%" />
       </el-form-item>
       <el-form-item label="defaultFS" prop="defaultFS">
-        <el-input v-model="writerForm.defaultFS" placeholder="Hadoop hdfs文件系统namenode节点地址" style="width: 42%" />
+        <el-input v-model="writerForm.defaultFS" placeholder="hdfs文件系统namenode节点地址,默认:hdfs://10.49.0.40:4007" style="width: 42%" />
       </el-form-item>
       <el-form-item label="fileName" prop="fileName">
-        <el-input v-model="writerForm.fileName" placeholder="HdfsWriter写入时的文件名" style="width: 42%" />
+        <el-input v-model="writerForm.fileName" placeholder="HdfsWriter写入时的文件名,默认:datax__" style="width: 42%" />
       </el-form-item>
       <el-form-item label="fileType" prop="fileType">
-        <el-select v-model="writerForm.fileType" placeholder="文件的类型">
+        <el-select v-model="writerForm.fileType" placeholder="文件的类型,默认:parquet">
           <el-option v-for="item in fileTypes" :key="item.value" :label="item.label" :value="item.value" />
         </el-select>
       </el-form-item>
       <el-form-item label="writeMode" prop="writeMode">
-        <el-select v-model="writerForm.writeMode" placeholder="文件的类型">
+        <el-select v-model="writerForm.writeMode" placeholder="写入方式,默认:append">
           <el-option v-for="item in writeModes" :key="item.value" :label="item.label" :value="item.value" />
         </el-select>
       </el-form-item>
       <el-form-item label="fieldDelimiter" prop="fieldDelimiter">
-        <el-input v-model="writerForm.fieldDelimiter" placeholder="与创建表的分隔符一致" style="width: 13%" />
+        <el-input v-model="writerForm.fieldDelimiter" placeholder="表的分隔符,parquet格式无效,默认\t" style="width: 13%" />
       </el-form-item>
       <el-form-item label="字段">
         <el-checkbox v-model="writerForm.checkAll" :indeterminate="writerForm.isIndeterminate" @change="wHandleCheckAllChange">全选</el-checkbox>

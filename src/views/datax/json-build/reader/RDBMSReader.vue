@@ -32,6 +32,7 @@
       </el-form-item>
       <el-form-item label="env_key：">
         <el-input v-model="readerForm.envKey" placeholder="为空则不填加env_key字段" style="width: 20%" />
+        <el-button type="primary" @click.prevent="getColumns('reader')">解析env_key</el-button>
         <el-button type="primary" @click.prevent="createHiveTable('create')">创建hive表</el-button>
       </el-form-item>
       <el-form-item label="切分字段：">
@@ -173,7 +174,8 @@ export default {
     getTableColumns() {
       const obj = {
         datasourceId: this.readerForm.datasourceId,
-        tableName: this.readerForm.tableName
+        tableName: this.readerForm.tableName,
+        envKey: this.readerForm.envKey
       }
       dsQueryApi.getColumns(obj).then(response => {
         this.rColumnList = response
